@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>KitsuCore Policies</title>
+	<link href="uno.css" rel="stylesheet" />
+
+	<style>
+		/*
+	1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+	2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+	2. [UnoCSS]: allow to override the default border color with css var `--un-default-border-color`
+	*/
+
+		*,
+		::before,
+		::after {
+			box-sizing: border-box;
+			/* 1 */
+			border-width: 0;
+			/* 2 */
+			border-style: solid;
+			/* 2 */
+			border-color: var(--un-default-border-color, #e5e7eb);
+			/* 2 */
+		}
+
+		/*
+	1. Use a consistent sensible line-height in all browsers.
+	2. Prevent adjustments of font size after orientation changes in iOS.
+	3. Use a more readable tab size.
+	4. Use the user's configured `sans` font-family by default.
+	*/
+
+		html {
+			line-height: 1.5;
+			/* 1 */
+			-webkit-text-size-adjust: 100%;
+			/* 2 */
+			text-size-adjust: 100%;
+			/* 2 */
+			-moz-tab-size: 4;
+			/* 3 */
+			tab-size: 4;
+			/* 3 */
+			font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+			/* 4 */
+		}
+
+		/*
+	1. Remove the margin in all browsers.
+	2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+	*/
+
+		body {
+			margin: 0;
+			/* 1 */
+			line-height: inherit;
+			/* 2 */
+		}
+
+		/*
+	1. Add the correct height in Firefox.
+	2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+	3. Ensure horizontal rules are visible by default.
+	*/
+
+		hr {
+			height: 0;
+			/* 1 */
+			color: inherit;
+			/* 2 */
+			border-top-width: 1px;
+			/* 3 */
+		}
+
+		/*
+	Add the correct text decoration in Chrome, Edge, and Safari.
+	*/
+
+		abbr:where([title]) {
+			text-decoration: underline dotted;
+		}
+
+		/*
+	Remove the default font size and weight for headings.
+	*/
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-size: inherit;
+			font-weight: inherit;
+		}
+
+		/*
+	Reset links to optimize for opt-in styling instead of opt-out.
+	*/
+
+		a {
+			color: inherit;
+			text-decoration: inherit;
+		}
+
+		/*
+	Add the correct font weight in Edge and Safari.
+	*/
+
+		b,
+		strong {
+			font-weight: bolder;
+		}
+
+		/*
+	1. Use the user's configured `mono` font family by default.
+	2. Correct the odd `em` font sizing in all browsers.
+	*/
+
+		code,
+		kbd,
+		samp,
+		pre {
+			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			/* 1 */
+			font-size: 1em;
+			/* 2 */
+		}
+
+		/*
+	Add the correct font size in all browsers.
+	*/
+
+		small {
+			font-size: 80%;
+		}
+
+		/*
+	Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+	*/
+
+		sub,
+		sup {
+			font-size: 75%;
+			line-height: 0;
+			position: relative;
+			vertical-align: baseline;
+		}
+
+		sub {
+			bottom: -0.25em;
+		}
+
+		sup {
+			top: -0.5em;
+		}
+
+		/*
+	1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+	2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+	3. Remove gaps between table borders by default.
+	*/
+
+		table {
+			text-indent: 0;
+			/* 1 */
+			border-color: inherit;
+			/* 2 */
+			border-collapse: collapse;
+			/* 3 */
+		}
+
+		/*
+	1. Change the font styles in all browsers.
+	2. Remove the margin in Firefox and Safari.
+	3. Remove default padding in all browsers.
+	*/
+
+		button,
+		input,
+		optgroup,
+		select,
+		textarea {
+			font-family: inherit;
+			/* 1 */
+			font-feature-settings: inherit;
+			/* 1 */
+			font-variation-settings: inherit;
+			/* 1 */
+			font-size: 100%;
+			/* 1 */
+			font-weight: inherit;
+			/* 1 */
+			line-height: inherit;
+			/* 1 */
+			color: inherit;
+			/* 1 */
+			margin: 0;
+			/* 2 */
+			padding: 0;
+			/* 3 */
+		}
+
+		/*
+	Remove the inheritance of text transform in Edge and Firefox.
+	*/
+
+		button,
+		select {
+			text-transform: none;
+		}
+
+		/*
+	1. Correct the inability to style clickable types in iOS and Safari.
+	2. Remove default button styles.
+	*/
+
+		button,
+		[type='button'],
+		[type='reset'],
+		[type='submit'] {
+			-webkit-appearance: button;
+			/* 1 */
+			background-color: transparent;
+			/* 2 */
+			background-image: none;
+			/* 2 */
+		}
+
+		/*
+	Use the modern Firefox focus style for all focusable elements.
+	*/
+
+		:-moz-focusring {
+			outline: auto;
+		}
+
+		/*
+	Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+	*/
+
+		:-moz-ui-invalid {
+			box-shadow: none;
+		}
+
+		/*
+	Add the correct vertical alignment in Chrome and Firefox.
+	*/
+
+		progress {
+			vertical-align: baseline;
+		}
+
+		/*
+	Correct the cursor style of increment and decrement buttons in Safari.
+	*/
+
+		::-webkit-inner-spin-button,
+		::-webkit-outer-spin-button {
+			height: auto;
+		}
+
+		/*
+	1. Correct the odd appearance in Chrome and Safari.
+	2. Correct the outline style in Safari.
+	*/
+
+		[type='search'] {
+			-webkit-appearance: textfield;
+			/* 1 */
+			outline-offset: -2px;
+			/* 2 */
+		}
+
+		/*
+	Remove the inner padding in Chrome and Safari on macOS.
+	*/
+
+		::-webkit-search-decoration {
+			-webkit-appearance: none;
+		}
+
+		/*
+	1. Correct the inability to style clickable types in iOS and Safari.
+	2. Change font properties to `inherit` in Safari.
+	*/
+
+		::-webkit-file-upload-button {
+			-webkit-appearance: button;
+			/* 1 */
+			font: inherit;
+			/* 2 */
+		}
+
+		/*
+	Add the correct display in Chrome and Safari.
+	*/
+
+		summary {
+			display: list-item;
+		}
+
+		/*
+	Removes the default spacing and border for appropriate elements.
+	*/
+
+		blockquote,
+		dl,
+		dd,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		hr,
+		figure,
+		p,
+		pre {
+			margin: 0;
+		}
+
+		fieldset {
+			margin: 0;
+			padding: 0;
+		}
+
+		legend {
+			padding: 0;
+		}
+
+		ol,
+		ul,
+		menu {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		/*
+	Prevent resizing textareas horizontally by default.
+	*/
+
+		textarea {
+			resize: vertical;
+		}
+
+		/*
+	1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+	2. Set the default placeholder color to the user's configured gray 400 color.
+	*/
+
+		input::placeholder,
+		textarea::placeholder {
+			opacity: 1;
+			/* 1 */
+			color: #9ca3af;
+			/* 2 */
+		}
+
+		/*
+	Set the default cursor for buttons.
+	*/
+
+		button,
+		[role="button"] {
+			cursor: pointer;
+		}
+
+		/*
+	Make sure disabled buttons don't get the pointer cursor.
+	*/
+		:disabled {
+			cursor: default;
+		}
+
+		/*
+	1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+	2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+	   This can trigger a poorly considered lint error in some tools but is included by design.
+	*/
+
+		img,
+		svg,
+		video,
+		canvas,
+		audio,
+		iframe,
+		embed,
+		object {
+			display: block;
+			/* 1 */
+			vertical-align: middle;
+			/* 2 */
+		}
+
+		/*
+	Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+	*/
+
+		img,
+		video {
+			max-width: 100%;
+			height: auto;
+		}
+
+		/* Make elements with the HTML hidden attribute stay hidden by default */
+		[hidden] {
+			display: none;
+		}
+	</style>
+</head>
+
+<body class="m-0 p-0">
+	<div
+		class="w-full h-full !min-h-[100dvh] m-0 bg-no-repeat bg-cover bg-center bg-fixed p-0 min-h-screen font-sans bg-[url(https://s3.kitsunes.club/storage/615792fd-9ea0-47a2-bd5b-d17965113dc0.png)]">
+		<form
+			class="py-24 sm:py-32 px-6 lg:px-8 mx-auto max-w-3xl prose text-sm prose-stone [&_h1,h2,h3,h4,h5,h6]:tracking-tight">
+			<div class="px-10 py-10 rounded-t-xl bg-gray-100/60 backdrop-blur-lg shadow-xl">
+				<img src="https://s3.kitsunes.club/storage/fda49619-3a3a-428e-9bdf-a3a3d37fd576.png" alt="[KitsuCore]"
+					width="100px">
+				<div id="mx-auto max-w-3xl">
+					<h1>Hiya, thanks for choosing Kitsu.</h1>
+					<p>You just have to read through our Rules and Privacy Policy.</p>
+					<div class="mt-10">
+						<h1 id="kitsucore-rules-v-1-5-updated-on-august-23rd-2023-">KitsuCore Rules, v.1.5 Updated on
+							August 23rd, 2023.</h1>
+						<p>By agreeing to these rules, you&#39;re bound to these rules for as long as you continue to
+							use our services.</p>
+						<p>We&#39;re in the business of making our rules fair and equal for all of our users. If you
+							think you have something
+							you want added or changed, send us a message at <a
+								href="mailto:admin@kitsunes.club">admin@kitsunes.club</a>.</p>
+						<h2 id="accounts">Accounts</h2>
+						<ul>
+							<li>You must be a minimum of 13 years old to use a Kitsu Service1. This may be higher
+								depending on your
+								jurisdiction.</li>
+							<li>Corporations, Organizations, or other commercial entities are barred from using our
+								services.</li>
+							<li>You cannot create an account if you have been previously barred from a Kitsu Service.
+							</li>
+							<li>You may not squat or otherwise hold an account with premium, wanted, or short usernames
+								without intent to use
+								said account.</li>
+							<li>You may not create an account with the intent to impersonate Kitsu administration or
+								impersonate other users
+								with malicious intent. However, parody accounts of brands and well-known figures are
+								permitted.</li>
+							<li>Account ownership may only be transferred to another user with written permission from
+								administration.</li>
+							<li>Under no circumstance is selling an account (or its ownership) acceptable.</li>
+							<li>Temporary emails are not permitted. Accounts with temporary emails will be suspended
+								without notice. Permanent
+								alias emails are permitted so long as they remain active within the long term.</li>
+							<li>No account or username may be used, shared, &#39;minted&#39;, identified, or otherwise
+								&#39;turned into&#39; a
+								Non-Fungible Token (NFT). Accounts used for such purposes will be suspended.</li>
+							<li>While we understand the importance of privacy for users, IP addresses that have been
+								identified as abusive may
+								be barred from accessing Kitsu, including VPNs.</li>
+						</ul>
+						<p><small>1. The only exception to this rule is KitsuGay, which requires users to be over the
+								age of 18, or the age of
+								majority, whichever is higher. Registration to KitsuGay may also require a valid photo
+								ID if deemed necessary,
+								such as an influx of minors attempting to use KitsuGay.</small></p>
+						<h2 id="content">Content</h2>
+						<ul>
+							<li>Content must be made in the English language.</li>
+							<li>Inappropriate content such as sexually suggestive or sexually explicit text/media or
+								otherwise triggering
+								content must be appropriately flagged if a feature exists (2). This might include
+								content warnings, NSFW flags,
+								etc. Putting a content warning on your profile page, while recommended, is NOT an
+								appropriate alternative.</li>
+							<li>Sexually explicit or sexually suggestive profile pictures, avatars, banners, or headers
+								are prohibited (3).</li>
+							<li>If possible, add alternate text or descriptive text to your media.</li>
+							<li>Content may be removed if it violates our rules.</li>
+							<li>While Political commentary is allowed so long as it is kept off of &quot;global
+								feeds&quot;, Political extremism
+								and dangerous conspiracies are not permitted.</li>
+							<li>Bigotry, including but not limited to any discrimination, hate speech, or targeted
+								harassment based on race,
+								gender, or sexual preference directed towards other users, is not permitted.</li>
+							<li>Users are not permitted to cause unease or intentional discomfort within other users.
+								This includes:<ul>
+									<li>Doxxing</li>
+									<li>Harassment or Flaming</li>
+									<li>Excessive Tagging</li>
+								</ul>
+							</li>
+							<li>Spamming and illegal content are prohibited.</li>
+							<li>Advertising is permitted but cannot be the majority of your content. Additionally,
+								advertisements for specific
+								sectors (gambling, banking, investments, or sectors that do not align with the
+								community) are not permitted.
+							</li>
+							<li>Child pornography, including Shota/Loli/Cub Porn, is not tolerated.</li>
+						</ul>
+						<p><small>2. The only exception is KitsuClub, where sexually explicit or extremely sexually
+								suggestive text/media is
+								strictly prohibited. Sexual equipment and similar objects are considered sexually
+								explicit.</small></p>
+						<p><small>3. The only exception is KitsuGay, which permits sexually suggestive profile pictures
+								and banners, but NOT
+								sexually explicit profile pictures and banners.</small></p>
+						<h2 id="termination">Termination</h2>
+						<p>Users are permitted onto Kitsu services at the discretion of administration. Users can be
+							terminated for any reason,
+							with or without notice by moderation. Users are ultimately responsible for canceling any
+							monetary membership they
+							may have if they are terminated. If a user is terminated from Kitsu by moderation, they are
+							considered barred from
+							Kitsu and are not permitted under any circumstance to create another account under any Kitsu
+							service, present or
+							future. Users may terminate themselves from Kitsu by deleting any account associated with
+							Kitsu. Users may also
+							request termination by email from their verified emails to <a
+								href="mailto:admin@kitsunes.club" title="FORGET ME REQUEST">admin@kitsunes.club</a> with
+							the subject line &quot;FORGET ME REQUEST&quot;.</p>
+						<h2 id="license">License</h2>
+						<p>You grant Kitsu a nonexclusive, royalty-free, worldwide, sublicensable, revocable, fully paid
+							license to use,
+							reproduce, modify, host, distribute, adapt, and display your User Content. You may revoke
+							this license by deleting
+							your content.</p>
+						<h2 id="limitations">Limitations</h2>
+						<ol>
+							<li>
+								<p>THE SERVICE AND ALL RELATED COMPONENTS AND INFORMATION ARE PROVIDED ON AN “AS IS” AND
+									“AS AVAILABLE” BASIS
+									WITHOUT ANY WARRANTIES OF ANY KIND, AND KITSU EXPRESSLY DISCLAIMS ANY AND ALL
+									WARRANTIES, WHETHER EXPRESS OR
+									IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+									TITLE, FITNESS FOR A
+									PARTICULAR PURPOSE, AND NON-INFRINGEMENT. USERS ACKNOWLEDGE THAT KITSU DOES NOT
+									WARRANT THAT THE SERVICE
+									WILL BE UNINTERRUPTED, TIMELY, SECURE, ERROR-FREE OR VIRUS-FREE, NOR DOES IT MAKE
+									ANY WARRANTY AS TO THE
+									RESULTS THAT MAY BE OBTAINED FROM USE OF THE SERVICES, AND NO INFORMATION, ADVICE OR
+									SERVICES OBTAINED BY
+									YOU FROM KITSU OR THROUGH THE SERVICE SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED
+									IN THIS TOS.</p>
+							</li>
+							<li>
+								<p>UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY (WHETHER IN CONTRACT, TORT, OR
+									OTHERWISE) SHALL KITSU BE
+									LIABLE TO USERS OR ANY THIRD PARTY FOR (A) ANY INDIRECT, INCIDENTAL, SPECIAL,
+									EXEMPLARY, CONSEQUENTIAL OR
+									PUNITIVE DAMAGES, INCLUDING LOST PROFITS, LOST SALES OR BUSINESS, LOST DATA, OR (B)
+									ANY MATTER BEYOND OUR
+									REASONABLE CONTROL IN CONNECTION WITH THE USE OF OUR SERVICES. UNDER NO
+									CIRCUMSTANCES SHALL KITSU BE LIABLE
+									TO YOU FOR ANY AMOUNT. THE PROVISIONS OF THIS SECTION ALLOCATE THE RISKS UNDER THIS
+									TOS BETWEEN THE PARTIES,
+									AND THE PARTIES HAVE RELIED ON THESE LIMITATIONS IN DETERMINING WHETHER TO ENTER
+									INTO THIS TOS.</p>
+							</li>
+							<li>
+								<p>Some jurisdictions do not allow the exclusion of implied warranties or limitation of
+									liability for incidental
+									or consequential damages, which means that some of the above limitations may not
+									apply to you. IN THESE
+									JURISDICTIONS, KITSU’S LIABILITY WILL BE LIMITED TO THE GREATEST EXTENT PERMITTED BY
+									LAW.</p>
+							</li>
+							<li>
+								<p>Users shall defend, indemnify, and hold harmless Kitsu from and against any claims,
+									actions or demands,
+									including without limitation reasonable legal and accounting fees, arising or
+									resulting from your breach of
+									this TOS, any of User Data, or Users’ misuse of the Service. Kitsu shall provide
+									notice to Users of any such
+									claim, suit or demand. Kitsu reserves the right to conduct the exclusive defense and
+									control of any matter
+									that is subject to indemnification under this section. In such case, you agree to
+									cooperate with any
+									reasonable requests assisting Kitsu’s defense of such matters.</p>
+							</li>
+						</ol>
+						<h1 id="kitsucore-privacy-policy-v-1-4-updated-on-august-23rd-2023-">KitsuCore Privacy Policy,
+							V.1.4, Updated on August
+							23rd, 2023.</h1>
+						<p>This Privacy Policy describes how your personal information is collected, used, and shared
+							when you visit, use, or
+							create content with any Kitsu Website. </p>
+						<h3 id="personal-information-collected">Personal information collected</h3>
+						<p>When you visit a Kitsu site, we automatically collect certain information about your device,
+							including information
+							about your web browser, IP address, time zone, as well as any cookies related to the website
+							you are currently
+							visiting. Additionally, as you browse the website, we collect information about the
+							individual web pages that you
+							view. We refer to this as &quot;Device information&quot;. </p>
+						<p>We collect Device information using the following technologies: </p>
+						<ul>
+							<li>Cookies are minuscule data files that are placed on your device or computer and often
+								include an anonymous
+								identifier. For more information about cookies, and how to disable them, visit <a
+									href="http://allaboutcookies.org">AllAboutCookies.org</a>.</li>
+							<li>Log files track pages that you access, and collect data including your IP address,
+								browser type, ISP, and
+								date/timestamps.</li>
+						</ul>
+						<p>We also collect information that you explicitly give to us, such as posts, messages, photos,
+							video, audio, or other
+							&#39;user-generated content&#39;.<br>Kitsu does not use any tracking technology beyond
+							counters for read
+							announcements. </p>
+						<h3 id="how-do-we-use-your-information-">How do we use your information?</h3>
+						<p>We use this information to: </p>
+						<ul>
+							<li>Communicate with you</li>
+							<li>To comply with applicable laws and regulations, to respond to a subpoena, search
+								warrant, or other lawful
+								request, or to protect our rights</li>
+							<li>To enforce the rules and regulations of our, and other users&#39;s servers</li>
+							<li>Send content that you create to other servers through &#39;federation&#39;</li>
+						</ul>
+						<h3 id="who-do-we-share-information-with-">Who do we share information with?</h3>
+						<ul>
+							<li>Any other server who interfaces with the Kitsu Services will receive public information,
+								i.e. any user content,
+								or content you make available.</li>
+							<li>Kitsu does not share personal information, like your email, to other servers and we do
+								not sell, trade, or
+								otherwise transfer your personal identifiable information.</li>
+							<li>Photos, Videos, audio, media, or other non-text content will be submitted to Wasabi (<a
+									href="https://wasabi.com/legal/privacy-policy">https://wasabi.com/legal/privacy-policy</a>)
+								for long-term
+								storage, and allow Fastly (<a
+									href="https://www.fastly.com/privacy/">https://www.fastly.com/privacy/</a>) to
+								cache this content.</li>
+						</ul>
+						<h3 id="data-retention">Data retention</h3>
+						<p>When you register for a Kitsu Service, we will maintain your information for both our
+							records, unless and until you
+							ask us to delete this information. Some information may be retained indefinitely in some
+							circumstances;
+							specifically, the emails/IP addresses of users who have been barred from our services. </p>
+						<h3 id="changes">Changes</h3>
+						<p>We may update this privacy policy from time to time in order to reflect changes to our
+							practices or for other
+							operation, legal, or regulatory reasons. We require all users to accept the new policies
+							before allowing normal
+							usage of the platform. </p>
+						<h3 id="contact-us">Contact Us</h3>
+						<p>For more information about our privacy practices, if you have any questions, or if you&#39;d
+							like to make a
+							complaint, please contact us by email at kio@kitsunes.club.</p>
+
+					</div>
+
+				</div>
+			</div>
+			{% if not public_version %}
+			<div class="px-6 py-4 bg-gray-100 sticky not-prose -bottom-1 inset-x-0 text-white flex-row gap-4">
+				<form method="post" action="consent">
+					<input type="hidden" name="v" value="{{version}}" />
+					<input type="hidden" name="u" value="{{user}}" />
+					<input type="hidden" name="h" value="{{userhmac}}" />
+					<button type="submit"
+						class="rounded-md !bg-white px-3.5 py-2.5 text-sm font-semibold w-full text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:!bg-gray-50">Approve</button>
+				</form>
+			</div>
+			{% endif %}
+	</div>
+	</div>
+</body>

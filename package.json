@@ -1,0 +1,7 @@
+{
+  "dependencies": {},
+  "devDependencies": {
+    "@julr/unocss-preset-forms": "^0.0.5",
+    "unocss": "^0.55.7"
+  }
+}
